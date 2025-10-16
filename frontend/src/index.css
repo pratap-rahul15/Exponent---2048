@@ -2,25 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Simple CSS variables */
+
 :root{
   --board-bg: rgba(255,255,255,0.04);
   --tile-bg: rgba(255,255,255,0.03);
   --glass: rgba(255,255,255,0.06);
 }
 
-/* Background & base font */
+@keyframes auroraShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 body {
-  background: linear-gradient(135deg, #0f172a 0%, #0b1220 50%, #071028 100%);
+  
+  background: radial-gradient(1200px 800px at 10% 10%, #0ea5e9 0%, transparent 60%),
+              radial-gradient(1000px 700px at 90% 20%, #8b5cf6 0%, transparent 60%),
+              radial-gradient(900px 600px at 30% 90%, #22c55e 0%, transparent 60%),
+              linear-gradient(135deg, #0b1020 0%, #0a1228 50%, #0b1120 100%);
+  background-size: 200% 200%;
+  animation: auroraShift 30s ease infinite;
   color: #e6eef8;
-  font-family: 'Inter', 'Poppins', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 
 .tile {
-  border-radius: 1rem;           
+  border-radius: 1rem;            
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,8 +41,6 @@ body {
   width: 100%;
   height: 100%;
 }
-
-/* tile color classes (keep as plain css so they map to values) */
 .tile-2 { background: #eee4da; color: #776e65; }
 .tile-4 { background: #ede0c8; color: #776e65; }
 .tile-8 { background: #f2b179; color: white; }
@@ -44,7 +53,7 @@ body {
 .tile-1024 { background: #edc53f; color: white; font-size: 0.85rem; }
 .tile-2048 { background: #edc22e; color: white; font-size: 0.85rem; }
 
-/* board container */
+
 .board-wrap {
   background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
   border-radius: 16px;
@@ -53,31 +62,11 @@ body {
   box-shadow: 0 8px 30px rgba(2,6,23,0.6);
 }
 
-/* cell placeholder (plain CSS for radius & background) */
 .cell {
-  border-radius: 0.75rem; /* rounded-xl */
+  border-radius: 0.75rem; 
   background: rgba(255,255,255,0.02);
 }
 
-/* responsive tweaks */
-@media (min-width: 1024px) {
-  .cell { height: 5.5rem; }
-  .tile { font-size: 1.125rem; }
-}
-
-@media (max-width: 640px) {
-  .cell { height: 3.5rem; }
-  .tile { font-size: 0.9rem; }
-}
-
-/* smooth tile transitions */
-.cell > * {
-  transition: transform 150ms ease, box-shadow 120ms ease, opacity 160ms ease;
-}
-button:focus { outline: 2px solid rgba(99,102,241,0.6); outline-offset: 2px; }
-
-
-/* glass card */
 .card-glass {
   background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
   border-radius: 12px;
@@ -86,7 +75,6 @@ button:focus { outline: 2px solid rgba(99,102,241,0.6); outline-offset: 2px; }
   border: 1px solid rgba(255,255,255,0.03);
 }
 
-/* Score chip */
 .score-chip {
   min-width: 110px;
   padding: 12px 16px;
@@ -97,7 +85,7 @@ button:focus { outline: 2px solid rgba(99,102,241,0.6); outline-offset: 2px; }
   border: 1px solid rgba(255,255,255,0.03);
 }
 
-/* Primary action button */
+
 .btn-primary {
   background: linear-gradient(90deg,#6366f1,#7c3aed);
   color: white;
@@ -108,22 +96,24 @@ button:focus { outline: 2px solid rgba(99,102,241,0.6); outline-offset: 2px; }
   border: none;
 }
 .btn-primary:hover { transform: translateY(-2px); transition: transform .14s ease; }
+button:focus { outline: 2px solid rgba(99,102,241,0.6); outline-offset: 2px; }
 
-/* Big circular control buttons */
+
 .control-btn {
   width: 52px;
   height: 52px;
   border-radius: 999px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
-  border: 1px solid rgba(255,255,255,0.03);
+  color: white;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 .control-btn:hover { transform: translateY(-3px); transition: transform .12s ease; }
 
-/* Leaderboard card */
+
 .lb-entry {
   display:flex;
   justify-content:space-between;
@@ -135,6 +125,21 @@ button:focus { outline: 2px solid rgba(99,102,241,0.6); outline-offset: 2px; }
   border: 1px solid rgba(255,255,255,0.02);
 }
 
-/* nicen up headings */
+
+.cell > * {
+  transition: transform 150ms ease, box-shadow 120ms ease, opacity 160ms ease;
+}
+
+
 .h-premium { font-family: 'Poppins', Inter, sans-serif; font-weight:700; letter-spacing: -0.5px; }
 
+
+@media (min-width: 1024px) {
+  .cell { height: 5.5rem; }
+  .tile { font-size: 1.125rem; }
+}
+
+@media (max-width: 640px) {
+  .cell { height: 3.5rem; }
+  .tile { font-size: 0.9rem; }
+}
