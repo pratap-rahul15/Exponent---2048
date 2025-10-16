@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Simple CSS variables */
+:root{
+  --board-bg: rgba(255,255,255,0.04);
+  --tile-bg: rgba(255,255,255,0.03);
+  --glass: rgba(255,255,255,0.06);
+}
+
+/* Background & base font */
+body {
+  background: linear-gradient(135deg, #0f172a 0%, #0b1220 50%, #071028 100%);
+  color: #e6eef8;
+  font-family: 'Inter', 'Poppins', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.tile {
+  border-radius: 1rem;           
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.125rem;           /* text-lg */
+  box-shadow: 0 8px 20px rgba(2,6,23,0.45);
+  width: 100%;
+  height: 100%;
+}
+
+/* tile color classes (keep as plain css so they map to values) */
+.tile-2 { background: #eee4da; color: #776e65; }
+.tile-4 { background: #ede0c8; color: #776e65; }
+.tile-8 { background: #f2b179; color: white; }
+.tile-16 { background: #f59563; color: white; }
+.tile-32 { background: #f67c5f; color: white; }
+.tile-64 { background: #f65e3b; color: white; }
+.tile-128 { background: #edcf72; color: white; font-size: 0.95rem; }
+.tile-256 { background: #edcc61; color: white; font-size: 0.95rem; }
+.tile-512 { background: #edc850; color: white; font-size: 0.95rem; }
+.tile-1024 { background: #edc53f; color: white; font-size: 0.85rem; }
+.tile-2048 { background: #edc22e; color: white; font-size: 0.85rem; }
+
+/* board container */
+.board-wrap {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+}
+
+/* cell placeholder (plain CSS for radius & background) */
+.cell {
+  border-radius: 0.75rem; /* rounded-xl */
+  background: rgba(255,255,255,0.02);
+}
+
+/* responsive tweaks */
+@media (min-width: 1024px) {
+  .cell { height: 5.5rem; }
+  .tile { font-size: 1.125rem; }
+}
+
+@media (max-width: 640px) {
+  .cell { height: 3.5rem; }
+  .tile { font-size: 0.9rem; }
+}
+
+/* smooth tile transitions */
+.cell > * {
+  transition: transform 150ms ease, box-shadow 120ms ease, opacity 160ms ease;
+}
+button:focus { outline: 2px solid rgba(99,102,241,0.6); outline-offset: 2px; }
+
+
+/* glass card */
+.card-glass {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Score chip */
+.score-chip {
+  min-width: 110px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  box-shadow: 0 6px 20px rgba(2,6,23,0.45);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Primary action button */
+.btn-primary {
+  background: linear-gradient(90deg,#6366f1,#7c3aed);
+  color: white;
+  padding: .5rem .9rem;
+  border-radius: .5rem;
+  font-weight: 600;
+  box-shadow: 0 8px 22px rgba(99,102,241,0.14);
+  border: none;
+}
+.btn-primary:hover { transform: translateY(-2px); transition: transform .14s ease; }
+
+/* Big circular control buttons */
+.control-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.control-btn:hover { transform: translateY(-3px); transition: transform .12s ease; }
+
+/* Leaderboard card */
+.lb-entry {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  padding:10px;
+  border-radius:10px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.02);
+}
+
+/* nicen up headings */
+.h-premium { font-family: 'Poppins', Inter, sans-serif; font-weight:700; letter-spacing: -0.5px; }
+

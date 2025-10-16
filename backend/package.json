@@ -1,0 +1,32 @@
+{
+  "name": "exponent-backend",
+  "version": "1.0.0",
+  "description": "Leaderboard and backend API service for the Exponent 2048 Game project",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest --runInBand"
+  },
+  "keywords": [
+    "exponent",
+    "backend",
+    "2048",
+    "game"
+  ],
+  "author": "Rahul Singh",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.0",
+    "supertest": "^7.1.0"
+  }
+}
